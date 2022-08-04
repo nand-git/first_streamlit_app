@@ -13,4 +13,6 @@ sl.dataframe(fruit_to_show)
 
 sl.header("Fruit Advice")
 fruit_res=req.get("https://fruityvice.com/api/fruit/watermelon")
-sl.text(fruit_res.json())
+#sl.text(fruit_res.json())
+fruit_norm = pd.json_normalize(fruit_res.json())
+sl.dataframe(fruit_norm)
