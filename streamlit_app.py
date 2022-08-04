@@ -1,5 +1,5 @@
 import streamlit as sl
-import requests req
+import requests as req
 import pandas as pd
 
 sl.title("Breakfast Menu")
