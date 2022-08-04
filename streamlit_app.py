@@ -1,5 +1,5 @@
 import streamlit as sl
-import request
+import requests req
 import pandas as pd
 
 sl.title("Breakfast Menu")
@@ -12,5 +12,5 @@ fruit_to_show = fruit_list.loc[fruit_selected]
 sl.dataframe(fruit_to_show)
 
 sl.header("Fruit Advice")
-fruit_res=requests.get("https://fruityvice.com/api/fruit/watermelon")
+fruit_res=req.get("https://fruityvice.com/api/fruit/watermelon")
 sl.text(fruit_res.json())
