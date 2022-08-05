@@ -45,7 +45,7 @@ add_my_fruit=sl.text_input("What fruit to add?")
 
 def insert_fruit(new_fruit):
   with my_cnx.cursor() as my_cur:
-    my_cur.execute("insert into PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST values("+new_fruit+")")
+    my_cur.execute("insert into PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST values('" + new_fruit + "')")
     return new_fruit+" added!"
   
 if sl.button("Add a fruit to list"):
