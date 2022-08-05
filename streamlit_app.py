@@ -15,7 +15,7 @@ sl.dataframe(fruit_to_show)
 
 sl.header("Fruit Advice")
 try:
-fruit_choice=sl.text_input("Choose fruit: ")
+  fruit_choice=sl.text_input("Choose fruit: ")
   if not fruit_choice:
     sl.error("Please choose a fruit!")
   else:
