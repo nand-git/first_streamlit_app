@@ -30,16 +30,6 @@ try:
 except URLError as e:
   sl.error()
 
-#sl.stop()
-
-"""
-my_cur = my_cnx.cursor()
-#my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
-my_cur.execute("select * from PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST")
-my_data_row = my_cur.fetchall()
-#sl.text("Hello from Snowflake:")
-"""
-
 def get_fruit_list():
   with my_cnx.cursor() as my_cur:
     my_cur.execute("select * from PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST")
@@ -50,3 +40,15 @@ if sl.button('Get Fruit load list'):
   my_data_rows=get_fruit_list()
   sl.header("Fruit list: ")
   sl.dataframe(my_data_rows)
+  
+add_my_fruit=sl.text_input("What fruit to add?")
+
+def insert_fruit(new_fruit):
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("insert into PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST values("+new_fruit+")")
+    return new_fruit+" added!"
+  
+if sl.button("Add a fruit to list"):
+  my_cnx = snowflake.connector.connect(**sl.secrets["snowflake"])
+  fruit_sf_res=insert_fruit(add_my_fruit)
+  sl.text(fruit_sf_res)
