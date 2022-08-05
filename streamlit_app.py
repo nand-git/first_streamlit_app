@@ -32,11 +32,21 @@ except URLError as e:
 
 #sl.stop()
 
-my_cnx = snowflake.connector.connect(**sl.secrets["snowflake"])
+"""
 my_cur = my_cnx.cursor()
 #my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 my_cur.execute("select * from PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST")
 my_data_row = my_cur.fetchall()
 #sl.text("Hello from Snowflake:")
-sl.header("Fruit list: ")
-sl.dataframe(my_data_row)
+"""
+
+def get_fruit_list():
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("select * from PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST")
+    return my_cur.fetchall()
+
+if sl.button('Get Fruit load list'):
+  my_cnx = snowflake.connector.connect(**sl.secrets["snowflake"])
+  my_data_rows=get_fruit_list()
+  sl.header("Fruit list: ")
+  sl.dataframe(my_data_rows)
