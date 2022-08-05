@@ -19,7 +19,7 @@ fruit_res=req.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 fruit_norm = pd.json_normalize(fruit_res.json())
 sl.dataframe(fruit_norm)
 
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cnx = snowflake.connector.connect(**sl.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 my_data_row = my_cur.fetchone()
